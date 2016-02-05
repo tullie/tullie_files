@@ -1,0 +1,153 @@
+# Author: Tullie Murrell (tulliemurrell@gmail.com)
+
+# ----------------------------------------------------------------------------------------------
+# Aliasas
+# ----------------------------------------------------------------------------------------------
+
+# PS
+alias psa="ps aux"
+alias psg="ps aux | grep "
+
+# Moving around
+alias cdb='cd -'
+alias cls='clear;ls'
+
+# Show human friendly numbers and colors
+alias df='df -h'
+alias du='du -h -d 2'
+
+# LS
+alias ll='ls -alGh'
+alias ls='ls -Gh'
+
+# Common shell functions
+alias less='less -r'
+alias tf='tail -f'
+alias l='less'
+alias lh='ls -alt | head' # See the last modified files
+alias cl='clear'
+
+# Zippin
+alias gz='tar -zcvf'
+
+# Kill
+alias ka9='killall -9'
+alias k9='kill -9'
+
+# Finder
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+# Homebrew
+alias brewu='brew update && brew upgrade && brew cleanup && brew prune && brew doctor'
+
+# Override rm -i alias which makes rm prompt for every action
+alias rm='nocorrect rm'
+
+# Don't try to glob with zsh so you can do stuff like ga *foo* and correctly 
+# have git add the right stuff
+alias git='noglob git'
+
+# Global aliases
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g c='| wc -l'
+alias -g h='| head'
+alias -g l="| less"
+alias -g n="| /dev/null"
+alias -g s='| sort'
+alias -g g='| grep' # now you can do: ls foo g something
+
+# ----------------------------------------------------------------------------------------------
+# Colors
+# ----------------------------------------------------------------------------------------------
+
+export GREP_COLOR='1;33'
+
+# ----------------------------------------------------------------------------------------------
+# Fasd
+# ----------------------------------------------------------------------------------------------
+
+# Only init if installed
+fasd_cache="$HOME/.fasd-init-bash"
+if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
+  eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)" >| "$fasd_cache"
+fi
+source "$fasd_cache"
+unset fasd_cache
+
+# Jump to recently used items
+alias a='fasd -a'          # Any
+alias s='fasd -si'         # Show / search / select
+alias d='fasd -d'          # Directory
+alias f='fasd -f'          # File
+alias z='fasd_cd -d'       # cd, same functionality as j in autojump
+alias zz='fasd_cd -d -i'   # Interactive directory jump
+alias v='f -e vim'         # Quick opening files with vim
+
+# ----------------------------------------------------------------------------------------------
+# Git
+# ----------------------------------------------------------------------------------------------
+
+# Makes git auto completion faster favouring for local completions
+__git_files () {
+    _wanted files expl 'local files' _files
+}
+
+# ----------------------------------------------------------------------------------------------
+# Key bindings
+# ----------------------------------------------------------------------------------------------
+
+bindkey -v                                          # Use vi key bindings
+bindkey '^r' history-incremental-search-backward    # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
+
+# Emacs style
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+
+# ----------------------------------------------------------------------------------------------
+# Last Command
+# ----------------------------------------------------------------------------------------------
+
+# Use Ctrl-x,Ctrl-l to get the output of the last command
+zmodload -i zsh/parameter
+insert-last-command-output() {
+LBUFFER+="$(eval $history[$((HISTCMD-1))])"
+}
+zle -N insert-last-command-output
+bindkey "^X^L" insert-last-command-output
+
+# ----------------------------------------------------------------------------------------------
+# Tmux auto start
+# ----------------------------------------------------------------------------------------------
+
+# Attaches to default tmux session on shell start
+if command -v tmux>/dev/null; then
+  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux new-session -n "default"
+  fi
+
+# ----------------------------------------------------------------------------------------------
+# Vi mode
+# ----------------------------------------------------------------------------------------------
+
+set -o vi
+export EDITOR=vim
+export VISUAL=vim
+
+# ----------------------------------------------------------------------------------------------
+# ZMV
+# ----------------------------------------------------------------------------------------------
+
+autoload -U zmv
+alias zmv="noglob zmv -W"
+
+# ----------------------------------------------------------------------------------------------
+# ZSH functions
+# ----------------------------------------------------------------------------------------------
+
+# (f)ind by (n)ame
+# usage: fn foo 
+# to find all files containing 'foo' in the name
+function fn() { ls **/*$1* }
+
