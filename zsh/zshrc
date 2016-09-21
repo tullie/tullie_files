@@ -1,6 +1,18 @@
 # Author: Tullie Murrell (tulliemurrell@gmail.com)
 
 # ----------------------------------------------------------------------------------------------
+# Prezto
+# ----------------------------------------------------------------------------------------------
+
+if [[ -s "$HOME/.zprezto/init.zsh" ]]; then
+  source "$HOME/.zprezto/init.zsh"
+
+  autoload -Uz promptinit
+  promptinit
+  prompt tullie_fb # Set tullie_fb theme.
+fi
+
+# ----------------------------------------------------------------------------------------------
 # Aliasas
 # ----------------------------------------------------------------------------------------------
 
@@ -47,9 +59,6 @@ alias rm='nocorrect rm'
 # Don't try to glob with zsh so you can do stuff like ga *foo* and correctly 
 # have git add the right stuff
 alias git='noglob git'
-
-# Neovim
-alias nv='nvim'
 
 # Global aliases
 alias -g ...='../..'
@@ -122,14 +131,6 @@ zle -N insert-last-command-output
 bindkey "^X^L" insert-last-command-output
 
 # ----------------------------------------------------------------------------------------------
-# Vi mode
-# ----------------------------------------------------------------------------------------------
-
-set -o vi
-export EDITOR=vim
-export VISUAL=vim
-
-# ----------------------------------------------------------------------------------------------
 # ZMV
 # ----------------------------------------------------------------------------------------------
 
@@ -141,18 +142,27 @@ alias zmv="noglob zmv -W"
 # ----------------------------------------------------------------------------------------------
 
 # (f)ind by (n)ame
-# usage: fn foo 
+# usage: fn foo
 # to find all files containing 'foo' in the name
 function fn() { ls **/*$1* }
 
 # ----------------------------------------------------------------------------------------------
-# Prezto
+# Vi mode
 # ----------------------------------------------------------------------------------------------
 
-if [[ -s "$HOME/.zprezto/init.zsh" ]]; then
-  source "$HOME/.zprezto/init.zsh"
+set -o vi
+export EDITOR=vim
+export VISUAL=vim
+
+# ----------------------------------------------------------------------------------------------
+# Tmux
+# ----------------------------------------------------------------------------------------------
+if [[ ! $TERM =~ screen ]]; then
+  exec tmux attach
 fi
 
-autoload -Uz promptinit
-promptinit
-prompt tullie # Set Tullie theme.
+# ----------------------------------------------------------------------------------------------
+# Facebook
+# ----------------------------------------------------------------------------------------------
+
+source '/usr/facebook/ops/rc/master.zshrc'

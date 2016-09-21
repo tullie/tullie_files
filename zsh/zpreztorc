@@ -8,7 +8,7 @@
 # Add location of custom theme.
 
 fpath=(
-  $HOME/Developer/tullie_files/zsh/custom_themes
+  $HOME/.tullie_files/zsh/custom_themes
   ${fpath}
 )
 

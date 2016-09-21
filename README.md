@@ -24,5 +24,7 @@
 - ```ln -s "$HOME"/.tullie_files/git/gitignore "$HOME"/.gitignore```
 - ```ln -s "$HOME"/.tullie_files/tmux/tmux.conf "$HOME"/.tmux.conf```
 
+# Linux install
+
 ## TODO ## 
 - Neovim config

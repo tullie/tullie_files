@@ -111,3 +111,5 @@
 [user]
 	name = Tullie Murrell
 	email = tulliemurrell@gmail.com
+[http]
+	proxy = fwdproxy:8080
