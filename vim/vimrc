@@ -13,7 +13,6 @@ set gcr=a:blinkon0              " Disable cursor blink
 set visualbell                  " No sounds
 set autoread                    " Reload files changed outside vim
 set cursorline                  " Highlight cursor line
-set spell spelllang=en_us       " Spell check
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -102,20 +101,24 @@ set smartcase       " ...unless we type a capital
 call plug#begin('~/.vim/plugins')
 
 " Appearance
-Plug 'skwp/vim-colors-solarized'
 Plug 'itchyny/lightline.vim'
-Plug 'jby/tmux.vim'
 Plug 'godlygeek/csapprox'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'skwp/vim-colors-solarized'
+Plug 'hhff/SpacegrayEighties.vim'
+Plug 'ajh17/Spacegray.vim'
+Plug 'jdkanani/vim-material-theme'
 
 " Language
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
-Plug 'rhysd/vim-clang-format'
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
 
 " Project
 Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
 
@@ -123,6 +126,7 @@ Plug 'xolox/vim-misc'
 Plug 'vim-scripts/IndexedSearch'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'skwp/greplace.vim'
+Plug 'rking/ag.vim'
 
 " Misc
 Plug 'skwp/YankRing.vim'
@@ -159,10 +163,22 @@ else
   end
 endif
 
-colorscheme solarized
+" colorscheme solarized
+" colorscheme SpacegrayEighties
+" colorscheme spacegray
 set background=dark
+"colorscheme material-theme
 
-" ================ Keymaps ===================
+" ================ Spell Check ==================
+
+set spell spelllang=en_us
+hi clear SpellBad
+hi clear SpellCap
+hi clear SpellRare
+hi clear SpellLocal
+hi SpellBad cterm=underline
+
+" ================ Keymaps =====================
 
 " Make Y consistent with C and D
 nnoremap Y y$
@@ -232,3 +248,54 @@ noremap ,hl :set hlsearch! hlsearch?<CR>
 " swap them: http://items.sjbach.com/319/configuring-vim-right
 nnoremap ' `
 nnoremap ` '
+
+" We don't want to use Ctrl-p as the mapping because
+" it interferes with YankRing (paste, then hit ctrl-p)
+let g:ctrlp_map = ',t'
+nnoremap <silent> ,t :CtrlP<CR>
+
+" Additional mapping for buffer search
+nnoremap <silent> ,b :CtrlPBuffer<cr>
+
+" Cmd-Shift-P to clear the cache
+nnoremap <silent> <D-P> :ClearCtrlPCache<cr>
+
+"Cmd-Shift-(M)ethod - jump to a method (tag in current file)
+"Ctrl-m is not good - it overrides behavior of Enter
+nnoremap <silent> <D-M> :CtrlPBufTag<CR>
+
+nmap ,aa :A<CR>
+nmap ,av :AV<CR>
+nmap ,as :AS<CR>
+
+" ================ Wrapping ====================
+
+" http://vimcasts.org/episodes/soft-wrapping-text/
+function! SetupWrapping()
+  set wrap linebreak nolist
+  set showbreak=…
+endfunction
+
+command! -nargs=* Wrap :call SetupWrapping()<CR>
+
+" ======== Remove trailing whitespace ==========
+
+" Via: http://rails-bestpractices.com/posts/60-remove-trailing-whitespace
+" Strip trailing whitespace
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
+nmap ,w :StripTrailingWhitespaces<CR>
+
+" ================= Facebook ==================
+
+source /home/engshare/admin/scripts/vim/biggrep.vim

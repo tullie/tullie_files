@@ -1,6 +1,3 @@
-" c++11 clang compiler
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 " Mark syntax errors with :signs
 let g:syntastic_enable_signs=1
 " Automatically jump to the error when saving the file

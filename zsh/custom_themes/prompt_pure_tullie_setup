@@ -1,0 +1,32 @@
+# Pure Tullie
+# by Tullie Murrell
+# Based off: https://github.com/sindresorhus/pure
+
+prompt_pure_tullie_precmd() {
+	setopt local_options no_prompt_subst
+	vcs_info
+  print -P ""
+}
+
+prompt_pure_tullie_setup() {
+	prompt_opts=(subst percent)
+
+	zmodload zsh/parameter
+
+	autoload -Uz add-zsh-hook
+	autoload -Uz vcs_info
+
+	add-zsh-hook precmd prompt_pure_tullie_precmd
+
+	zstyle ':vcs_info:*' enable git
+	zstyle ':vcs_info:*' use-simple true
+	zstyle ':vcs_info:*' max-exports 2
+	zstyle ':vcs_info:git*' formats ' %b' 'x%R'
+	zstyle ':vcs_info:git*' actionformats ' %b|%a' 'x%R'
+
+	# Prompt turns red if the previous command didn't exit with 0
+	PROMPT='%F{blue}%~%f %(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
+  RPROMPT='%F{$git_color}${vcs_info_msg_0_}%f%'
+}
+
+prompt_pure_tullie_setup "$@"

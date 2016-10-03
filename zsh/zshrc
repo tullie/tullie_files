@@ -1,15 +1,28 @@
 # Author: Tullie Murrell (tulliemurrell@gmail.com)
 
 # ----------------------------------------------------------------------------------------------
+# Facebook
+# ----------------------------------------------------------------------------------------------
+
+source '/usr/facebook/ops/rc/master.zshrc'
+
+# ----------------------------------------------------------------------------------------------
 # Prezto
 # ----------------------------------------------------------------------------------------------
+
+local fb_prompt_file="${LOCAL_ADMIN_SCRIPTS}/scm-prompt"
+if [ -f "$fb_prompt_file" ]; then
+  source "$fb_prompt_file"
+else
+  echo "couldn't find FB SCM prompt file ${fb_prompt_file}"
+fi
 
 if [[ -s "$HOME/.zprezto/init.zsh" ]]; then
   source "$HOME/.zprezto/init.zsh"
 
   autoload -Uz promptinit
   promptinit
-  prompt tullie_fb # Set tullie_fb theme.
+  prompt pure_tullie
 fi
 
 # ----------------------------------------------------------------------------------------------
@@ -29,10 +42,10 @@ alias df='df -h'
 alias du='du -h -d 2'
 
 # LS
-alias ll='ls -alGh'
-alias ls='ls -Gh'
+alias ll='ls -alGh --color=auto'
+alias ls='ls -Gh --color=auto'
 
-# Common shell iunctions
+# Common shell functions
 alias less='less -r'
 alias tf='tail -f'
 alias l='less'
@@ -160,9 +173,3 @@ export VISUAL=vim
 if [[ ! $TERM =~ screen ]]; then
   exec tmux attach
 fi
-
-# ----------------------------------------------------------------------------------------------
-# Facebook
-# ----------------------------------------------------------------------------------------------
-
-source '/usr/facebook/ops/rc/master.zshrc'
