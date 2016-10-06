@@ -84,7 +84,7 @@
 [merge]
   summary = true
   verbosity = 1
-	tool = kdiff3
+  tool = kdiff3
 [apply]
   whitespace = nowarn
 [branch]
@@ -96,20 +96,19 @@
 [core]
   autocrlf = false
   editor = vim
-  excludesfile = .gitignore # TODO(tullie): This might need to be a full directory path
+  excludesfile = ~/.gitignore
 [advice]
   statusHints = false
 [diff]
   # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
   # instead of a/b/c/d as prefixes for patches
   mnemonicprefix = true
-	algorithm = patience
+  algorithm = patience
 [rerere]
   # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
   enabled = true
 [user]
+[user]
 	name = Tullie Murrell
 	email = tulliemurrell@gmail.com
-[http]
-	proxy = fwdproxy:8080
