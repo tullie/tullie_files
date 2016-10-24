@@ -133,6 +133,7 @@ Plug 'skwp/YankRing.vim'
 Plug 'vim-scripts/camelcasemotion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-scripts/a.vim'
+Plug 'valloric/youcompleteme'
 
 call plug#end()
 
@@ -163,11 +164,8 @@ else
   end
 endif
 
-" colorscheme solarized
-" colorscheme SpacegrayEighties
-" colorscheme spacegray
 set background=dark
-"colorscheme material-theme
+colorscheme tullie-colors
 
 " ================ Spell Check ==================
 
@@ -295,7 +293,3 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 nmap ,w :StripTrailingWhitespaces<CR>
-
-" ================= Facebook ==================
-
-source /home/engshare/admin/scripts/vim/biggrep.vim
