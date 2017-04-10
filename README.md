@@ -21,10 +21,12 @@
 - ```ln -s "$HOME"/.tullie_files/git/gitconfig "$HOME"/.gitconfig```
 - ```ln -s "$HOME"/.tullie_files/git/gitignore "$HOME"/.gitignore```
 - ```ln -s "$HOME"/.tullie_files/tmux/tmux.conf "$HOME"/.tmux.conf```
-- ```ln -s "$HOME"/.tullie_files/zsh/prezto "$HOME"/.zprezto```
-- ```ln -s "$HOME"/.tullie_files/zsh/preztorc "$HOME"/.zpreztorc```
 - ```ln -s "$HOME"/.tullie_files/vim/vimrc "$HOME"/.vimrc```
 - ```ln -s "$HOME"/.tullie_files/vim "$HOME"/.vim```
+
+For zsh prompt themes, clone prezto in the prezto directory (recursively). TODO(tullie): make this automatic.
+- ```ln -s "$HOME"/.tullie_files/zsh/prezto "$HOME"/.zprezto```
+- ```ln -s "$HOME"/.tullie_files/zsh/zpreztorc "$HOME"/.zpreztorc```
 
 # Linux install
 TODO
