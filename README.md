@@ -24,7 +24,10 @@
 - ```ln -s "$HOME"/.tullie_files/vim/vimrc "$HOME"/.vimrc```
 - ```ln -s "$HOME"/.tullie_files/vim "$HOME"/.vim```
 
-For zsh prompt themes, clone prezto in the prezto directory (recursively). 
+For zsh prompt themes - clone prezto in the prezto directory (recursively). 
 - ```cd "$HOME"/.tullie_files/zsh/prezto && git clone --recurse-submodules -j8 https://github.com/sorin-ionescu/prezto.git .```
 - ```ln -s "$HOME"/.tullie_files/zsh/prezto "$HOME"/.zprezto```
 - ```ln -s "$HOME"/.tullie_files/zsh/zpreztorc "$HOME"/.zpreztorc```
+
+Install plugins in Vim
+- :PlugInstall
