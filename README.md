@@ -13,7 +13,7 @@
 - ```git clone https://github.com/tullie/tullie_files $HOME/.tullie_files```
 - ```/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"``` 
 - ```brew install fasd zsh ctags git hub tmux reattach-to-user-namespace the_silver_searcher```
-- ```brew install vim --override-system-vim --with-lua --with-luajit```
+- ```brew install vim --override-system-vim --with-lua --with-client-server```
 - ```chsh -s /bin/zsh```
 - ```ln -s "$HOME"/.tullie_files/zsh/zshrc "$HOME"/.zshrc```
 - ```ln -s "$HOME"/.tullie_files/zsh/inputrc "$HOME"/.inputrc```
