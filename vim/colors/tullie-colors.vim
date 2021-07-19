@@ -123,28 +123,28 @@ endfun
 call <sid>hi("Bold",          "", "", "", "", "bold")
 call <sid>hi("Debug",         s:gui08, "", s:cterm08, "", "")
 call <sid>hi("Directory",     s:gui04, "", s:cterm04, "", "")
-call <sid>hi("ErrorMsg",      s:gui08, s:gui00, s:cterm08, s:cterm00, "")
-call <sid>hi("Exception",     s:gui0D, "", s:cterm0D, "", "")
-call <sid>hi("FoldColumn",    "", s:gui01, "", s:cterm01, "")
-call <sid>hi("Folded",        s:gui03, s:gui01, s:cterm03, s:cterm01, "")
-call <sid>hi("IncSearch",     s:gui01, s:gui09, s:cterm01, s:cterm09, "none")
+" call <sid>hi("ErrorMsg",      s:gui08, s:gui00, s:cterm08, s:cterm00, "")
+" call <sid>hi("Exception",     s:gui0D, "", s:cterm0D, "", "")
+call <sid>hi("FoldColumn",    "", s:gui01, "", s:cterm00, "")
+call <sid>hi("Folded",        s:gui03, s:gui01, s:cterm00, s:cterm03, "")
+call <sid>hi("IncSearch",     s:gui01, s:gui09, s:cterm01, s:cterm01, "none")
 call <sid>hi("Italic",        "", "", "", "", "none")
 call <sid>hi("Macro",         s:gui08, "", s:cterm08, "", "")
 call <sid>hi("MatchParen",    s:gui00, s:gui03, s:cterm00, s:cterm03,  "")
 call <sid>hi("ModeMsg",       s:gui04, "", s:cterm04, "", "")
 call <sid>hi("MoreMsg",       s:gui04, "", s:cterm04, "", "")
 call <sid>hi("Question",      s:gui0D, "", s:cterm0D, "", "")
-call <sid>hi("Search",        s:gui03, s:gui0A, s:cterm03, s:cterm0A,  "")
+call <sid>hi("Search",        s:gui03, s:gui0A, s:cterm02, s:cterm0E,  "")
 call <sid>hi("SpecialKey",    s:gui03, "", s:cterm03, "", "")
 call <sid>hi("TooLong",       s:gui08, "", s:cterm08, "", "")
 call <sid>hi("Underlined",    s:gui08, "", s:cterm08, "", "")
-call <sid>hi("Visual",        "", s:gui01, "", s:cterm01, "")
-call <sid>hi("VisualNOS",     "", s:gui01, "", s:cterm01, "")
-call <sid>hi("WarningMsg",    s:gui08, "", s:cterm08, "", "")
+call <sid>hi("Visual",        "", s:gui01, "", s:cterm00, "")
+call <sid>hi("VisualNOS",     "", s:gui01, "", s:cterm00, "")
+call <sid>hi("WarningMsg",    s:gui08, "", s:cterm02, "", "")
 call <sid>hi("WildMenu",      s:gui08, "", s:cterm08, "", "")
 call <sid>hi("Title",         s:gui04, "", s:cterm04, "", "none")
 call <sid>hi("Conceal",       s:gui04, s:gui00, s:cterm04, s:cterm00, "")
-call <sid>hi("Cursor",        "", s:gui03, "", s:cterm03, "")
+call <sid>hi("Cursor",        "", s:gui03, "", s:cterm00, "")
 call <sid>hi("NonText",       s:gui03, "", s:cterm03, "", "")
 call <sid>hi("LineNr",        s:gui03, s:gui00, s:cterm01, "none", "")
 call <sid>hi("SignColumn",    s:gui03, s:gui01, s:cterm03, s:cterm01, "")
@@ -152,21 +152,15 @@ call <sid>hi("SpecialKey",    s:gui04, "", s:cterm04, "", "")
 call <sid>hi("StatusLine",    s:gui04, s:gui02, s:cterm04, s:cterm02, "none")
 call <sid>hi("StatusLineNC",  s:gui03, s:gui01, s:cterm03, s:cterm01, "none")
 call <sid>hi("VertSplit",     s:gui00, s:gui00, s:cterm00, s:cterm00, "none")
-call <sid>hi("ColorColumn",   "", s:gui01, "", s:cterm01, "none")
-call <sid>hi("CursorColumn",  "", s:gui01, "", s:cterm01, "none")
-" call <sid>hi("CursorLine",    "", s:gui00, "", s:cterm00, "none")
-" call <sid>hi("CursorLineNr",  s:gui03, s:gui01, s:cterm03, s:cterm01, "")
-call <sid>hi("PMenu",         s:gui04, s:gui01, s:cterm04, s:cterm01, "none")
-call <sid>hi("PMenuSel",      s:gui0A, s:gui01, s:cterm0A, s:cterm01, "")
+" call <sid>hi("ColorColumn",   "", s:gui01, "", s:cterm01, "none")
+" call <sid>hi("CursorColumn",  "", s:gui01, "", s:cterm01, "none")
+call <sid>hi("CursorLine",    "", s:gui00, "", s:cterm00, "none")
+call <sid>hi("CursorLineNr",  s:gui03, s:gui01, s:cterm03, s:cterm01, "")
+call <sid>hi("PMenu",         s:gui03, s:gui02, s:cterm05, s:cterm00, "none")
+call <sid>hi("PMenuSel",      s:gui0A, s:gui05, s:cterm02, s:cterm00, "")
 call <sid>hi("TabLine",       s:gui03, s:gui01, s:cterm03, s:cterm01, "none")
 call <sid>hi("TabLineFill",   s:gui03, s:gui01, s:cterm03, s:cterm01, "none")
 call <sid>hi("TabLineSel",    s:gui09, s:gui01, s:cterm03, s:cterm01, "none")
-
-" Hide '~' at end of buffer in neovim
-" Set g:material_hide_endofbuffer = 0 to disable
-if has('nvim') && (!exists('g:material_hide_endofbuffer') || g:material_hide_endofbuffer == 1)
-  call <sid>hi("EndOfBuffer",s:gui00, s:gui00, s:cterm00, s:cterm00, "none")
-endif
 
 " Standard syntax highlighting
 " call <sid>hi("Boolean",      s:gui0D, "", s:cterm0D, "", "none")
@@ -216,11 +210,11 @@ call <sid>hi("cssClassName",   s:gui0E, "", s:cterm0E, "", "")
 call <sid>hi("cssColor",       s:gui0C, "", s:cterm0C, "", "")
 
 " Diff highlighting
-call <sid>hi("DiffAdd",      s:gui04, s:gui01,  s:cterm04, s:cterm01, "")
-call <sid>hi("DiffChange",   s:gui03, s:gui01,  s:cterm03, s:cterm01, "")
-call <sid>hi("DiffDelete",   s:gui06, s:gui01,  s:cterm06, s:cterm01, "")
-call <sid>hi("DiffText",     s:gui04, s:gui01,  s:cterm04, s:cterm01, "")
-call <sid>hi("DiffAdded",    s:gui06, s:gui00,  s:cterm06, s:cterm00, "")
+call <sid>hi("DiffAdd",      s:gui04, s:gui01,  s:cterm05, s:cterm00, "")
+call <sid>hi("DiffChange",   s:gui03, s:gui01,  s:cterm05, s:cterm00, "")
+call <sid>hi("DiffDelete",   s:gui06, s:gui01,  s:cterm06, s:cterm00, "")
+call <sid>hi("DiffText",     s:gui04, s:gui01,  s:cterm0F, s:cterm00, "")
+call <sid>hi("DiffAdded",    s:gui06, s:gui00,  s:cterm03, s:cterm00, "")
 call <sid>hi("DiffFile",     s:gui06, s:gui00,  s:cterm06, s:cterm00, "")
 call <sid>hi("DiffNewFile",  s:gui05, s:gui00,  s:cterm05, s:cterm00, "")
 call <sid>hi("DiffLine",     s:gui04, s:gui00,  s:cterm04, s:cterm00, "")
@@ -311,10 +305,10 @@ call <sid>hi("SpellCap",     "", s:gui00, "", s:cterm00, "undercurl")
 call <sid>hi("SpellRare",    "", s:gui00, "", s:cterm00, "undercurl")
 
 " Remove functions
-delf <sid>hi
-delf <sid>gui
-delf <sid>cterm
+" delf <sid>hi
+" delf <sid>gui
+" delf <sid>cterm
 
 " Remove color variables
-unlet s:gui00 s:gui01 s:gui02 s:gui03  s:gui04  s:gui05  s:gui06  s:gui07  s:gui08  s:gui09 s:gui0A  s:gui0B  s:gui0C  s:gui0D  s:gui0E  s:gui0F
-unlet s:cterm00 s:cterm01 s:cterm02 s:cterm03 s:cterm04 s:cterm05 s:cterm06 s:cterm07 s:cterm08 s:cterm09 s:cterm0A s:cterm0B s:cterm0C s:cterm0D s:cterm0E s:cterm0F
+" unlet s:gui00 s:gui01 s:gui02 s:gui03  s:gui04  s:gui05  s:gui06  s:gui07  s:gui08  s:gui09 s:gui0A  s:gui0B  s:gui0C  s:gui0D  s:gui0E  s:gui0F
+" unlet s:cterm00 s:cterm01 s:cterm02 s:cterm03 s:cterm04 s:cterm05 s:cterm06 s:cterm07 s:cterm08 s:cterm09 s:cterm0A s:cterm0B s:cterm0C s:cterm0D s:cterm0E s:cterm0F

@@ -47,6 +47,16 @@
   simple = log --pretty=format:\" * %s\"
   shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
 
+  sl = lg1 -30
+  lg = lg1
+  lg1 = lg1-specific --all
+  lg2 = lg2-specific --all
+  lg3 = lg3-specific --all
+  lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+  lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+  lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
+  lg4=lg1-specific --simplify-by-decoration --branches -10
+
   # Pull
   pl = pull                         # Pull
 
@@ -68,7 +78,6 @@
 
   # Stash
   ss = stash                        # Stash changes
-  sl = stash list                   # List stashes
   sa = stash apply                  # Apply stash (restore changes)
   sd = stash drop                   # Drop stashes (destory changes)
 
@@ -78,13 +87,14 @@
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [mergetool]
   prompt = false
+	keepBackup = false
 [mergetool "mvimdiff"]
   cmd = "mvim -c 'Gdiff' $MERGED"     # Use fugitive.vim for 3-way merge
   keepbackup = false
 [merge]
   summary = true
   verbosity = 1
-  tool = kdiff3
+	tool = vimdiff
 [apply]
   whitespace = nowarn
 [branch]
@@ -99,12 +109,12 @@
   excludesfile = ~/.gitignore
 [advice]
   statusHints = false
-[diff]
-  # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
-  # instead of a/b/c/d as prefixes for patches
-  mnemonicprefix = true
-  algorithm = patience
 [rerere]
   # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
   enabled = true
+[user]
+	name = tullie.murrell
+	email = tullie.murrell@cloudkitchens.com
+[pull]
+	rebase = true

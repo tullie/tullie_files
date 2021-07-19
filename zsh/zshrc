@@ -71,6 +71,9 @@ alias -g n="| /dev/null"
 alias -g s='| sort'
 alias -g g='| grep' # now you can do: ls foo g something
 
+# vim
+alias vim=nvim
+
 # ----------------------------------------------------------------------------------------------
 # Colors
 # ----------------------------------------------------------------------------------------------
@@ -160,3 +163,42 @@ export VISUAL=vim
 if [[ ! $TERM =~ screen ]]; then
   # exec tmux attach
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/tullie.murrell/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tullie.murrell/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/tullie.murrell/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tullie.murrell/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+export GOPROXY=https://proxy.golang.org,https://artifactory.cloudkitchens.internal/artifactory/api/go/go,direct
+export GOPRIVATE=css.com
+export GONOSUMDB=css.com
+export GONOPROXY=none
+export JAVA_HOME=/Users/tullie.murrell/Developer/monorepo/.css/libs/java/Contents/Home
+
+# Kubectl
+source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/Users/tullie.murrell/developer/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/Users/tullie.murrell/developer/miniconda/etc/profile.d/conda.sh" ]; then
+#         . "/Users/tullie.murrell/developer/miniconda/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/Users/tullie.murrell/developer/miniconda/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+
+alias nb_ssh="kubectl exec --stdin --tty -n jupyterhub jupyter-tullie-2emurrell -c notebook  -- sudo -u tullie.murrell /bin/bash"
+alias python=python3
+
+export MONOREPO=~/Developer/monorepo
+
+export PATH=${KREW_ROOT:-$HOME/.krew}/bin:$HOME/.local/patched-php:$PATH

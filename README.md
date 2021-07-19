@@ -13,7 +13,9 @@
 - ```git clone https://github.com/tullie/tullie_files $HOME/.tullie_files```
 - ```/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"``` 
 - ```brew install fasd zsh ctags git hub tmux reattach-to-user-namespace the_silver_searcher```
-- ```brew install vim --override-system-vim --with-lua --with-client-server```
+- ```brew install neovim --override-system-vim --with-lua --with-client-server```
+- ```brew install fzf```
+- ```$(brew --prefix)/opt/fzf/install```
 - ```chsh -s /bin/zsh```
 - ```ln -s "$HOME"/.tullie_files/zsh/zshrc "$HOME"/.zshrc```
 - ```ln -s "$HOME"/.tullie_files/zsh/inputrc "$HOME"/.inputrc```
@@ -23,6 +25,7 @@
 - ```ln -s "$HOME"/.tullie_files/tmux/tmux.conf "$HOME"/.tmux.conf```
 - ```ln -s "$HOME"/.tullie_files/vim/vimrc "$HOME"/.vimrc```
 - ```ln -s "$HOME"/.tullie_files/vim "$HOME"/.vim```
+- ```mkdir -p "$HOME"/.config/nvim && ln -s "$HOME"/.tullie_files/vim/init.vim "$HOME"/.config/nvim/init.vim```
 
 For zsh prompt themes - clone prezto in the prezto directory (recursively). 
 - ```cd "$HOME"/.tullie_files/zsh/prezto && git clone --recurse-submodules -j8 https://github.com/sorin-ionescu/prezto.git .```
