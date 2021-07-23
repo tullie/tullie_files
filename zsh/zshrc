@@ -80,18 +80,6 @@ alias vim=nvim
 
 export GREP_COLOR='1;33'
 
-# ----------------------------------------------------------------------------------------------
-# Fasd
-# ----------------------------------------------------------------------------------------------
-
-# Only init if installed
-fasd_cache="$HOME/.fasd-init-bash"
-if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
-  eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)" >| "$fasd_cache"
-fi
-source "$fasd_cache"
-unset fasd_cache
-
 # Jump to recently used items
 alias a='fasd -a'          # Any
 alias s='fasd -si'         # Show / search / select
