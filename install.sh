@@ -3,9 +3,12 @@ set -x
 # Brew
 if ! command -v brew &> /dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  touch "$HOME"/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME"/.zprofile
 fi
 
-brew install zsh ctags git hub tmux reattach-to-user-namespace the_silver_searcher nvim fzf
+brew install zsh ctags git hub tmux reattach-to-user-namespace the_silver_searcher nvim fzf node
 
 # Change shell to zsh
 chsh -s /bin/zsh
