@@ -25,7 +25,7 @@ prompt_pure_tullie_setup() {
 	zstyle ':vcs_info:git*' actionformats ' %b|%a' 'x%R'
 
 	# Prompt turns red if the previous command didn't exit with 0
-	PROMPT='%F{blue}%~%f %(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
+	PROMPT='%{$fg[blue]%}%m %F{blue}%~%f %(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
   RPROMPT='%F{$git_color}${vcs_info_msg_0_}%f%'
 }
 
