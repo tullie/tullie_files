@@ -125,7 +125,7 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'google/vim-maktaba'
 " Plug 'google/vim-codefmt'
 " Plug 'google/vim-glaive'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'neovim/nvim-lspconfig'
 
 
@@ -157,12 +157,6 @@ for fpath in split(globpath('~/.vim/plugin-settings/', '*.vim'), '\n')
   exe 'source' fpath
 endfor
 
-" Turn off coc in vimdiff
-augroup disableCocInDiff
-  autocmd!
-  autocmd DiffUpdated * let b:coc_enabled=0
-augroup END
-
 nnoremap gdh :diffget 2<CR>
 nnoremap gdl :diffget 3<CR>
 
@@ -170,9 +164,6 @@ nnoremap gdl :diffget 3<CR>
 
 set background=dark
 colorscheme tullie-colors
-
-" Coc hint colors
-highlight CocErrorFloat ctermfg=white guifg=#00000
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
