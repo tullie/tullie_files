@@ -105,8 +105,15 @@
   default = upstream
 [core]
   autocrlf = false
-  editor = vim
+  editor = nvim
   excludesfile = ~/.gitignore
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  line-numbers = true
+  side-by-side = false
 [advice]
   statusHints = false
 [rerere]
@@ -115,3 +122,14 @@
   enabled = true
 [pull]
 	rebase = true
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+
+# Machine-specific settings (user identity, credential helpers, LFS, any
+# per-machine overrides of the settings above) live in ~/.gitconfig.local,
+# which is NOT tracked in this repo. Must stay last so it can override
+# the defaults above.
+[include]
+	path = ~/.gitconfig.local

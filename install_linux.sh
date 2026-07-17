@@ -1,35 +1,24 @@
-set -x
+#!/usr/bin/env bash
+# Author: Tullie Murrell (tulliemurrell@gmail.com)
+set -ex
 
-# Zsh
-sudo apt install zsh
+DOTFILES="$HOME/.tullie_files"
 
-# Node is needed for neovim
-sudo apt install nodejs
-# Neovim
-sudo add-apt-repository ppa:neovim-ppa/unstable
+# zsh needs to come from apt so chsh can register it as a login shell
 sudo apt-get update
-sudo apt-get install neovim
+sudo apt-get install -y zsh build-essential procps curl file git
+
+# Homebrew (works on Linux too - lets install_common share one Brewfile
+# with install_mac.sh instead of hand-maintaining apt package names)
+if ! command -v brew &> /dev/null; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME"/.profile
+fi
+
+brew bundle --file="$DOTFILES/Brewfile"
 
 # Change shell to zsh
-chsh -s $(which zsh)
+chsh -s "$(which zsh)"
 
-# Symlinks
-ln -s "$HOME"/.tullie_files/zsh/zshrc "$HOME"/.zshrc
-ln -s "$HOME"/.tullie_files/zsh/inputrc "$HOME"/.inputrc
-ln -s "$HOME"/.tullie_files/zsh/editrc "$HOME"/.editrc
-ln -s "$HOME"/.tullie_files/git/gitconfig "$HOME"/.gitconfig
-ln -s "$HOME"/.tullie_files/git/gitignore "$HOME"/.gitignore
-ln -s "$HOME"/.tullie_files/tmux/tmux.conf "$HOME"/.tmux.conf
-ln -s "$HOME"/.tullie_files/vim/vimrc "$HOME"/.vimrc
-ln -s "$HOME"/.tullie_files/vim "$HOME"/.vim
-
-mkdir -p "$HOME"/.config/nvim
-ln -s "$HOME"/.tullie_files/vim/init.vim "$HOME"/.config/nvim/init.vim
-
-# Prezto (themes and prompt)
-git clone --recurse-submodules -j8 https://github.com/sorin-ionescu/prezto.git "$HOME"/.tullie_files/zsh/prezto
-ln -s "$HOME"/.tullie_files/zsh/prezto "$HOME"/.zprezto
-ln -s "$HOME"/.tullie_files/zsh/zpreztorc "$HOME"/.zpreztorc
-
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+source "$DOTFILES/install_common.sh"
