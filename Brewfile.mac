@@ -1,0 +1,6 @@
+# Author: Tullie Murrell (tulliemurrell@gmail.com)
+#
+# macOS-only additions (casks aren't supported by Homebrew on Linux).
+# brew bundle --file=Brewfile.mac
+
+cask "font-jetbrains-mono-nerd-font"

@@ -5,16 +5,15 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-# Add location of custom theme.
+# Directory jumping is handled by zoxide (see zsh/zshrc), so Prezto's own
+# 'fasd' module is intentionally left out of the pmodule list below. The
+# prompt module stays - the actual theme (pure_tullie) is set explicitly in
+# zsh/zshrc via `prompt pure_tullie`.
 
 fpath=(
   $HOME/.tullie_files/zsh/custom_themes
   ${fpath}
 )
-
-# Use custom theme.
-
-zstyle ':prezto:module:prompt' theme '3n'
 
 #
 # General
@@ -44,7 +43,6 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'completion' \
   'archive' \
-  'fasd' \
   'git' \
   'osx' \
   'ruby' \
@@ -81,15 +79,6 @@ zstyle ':prezto:module:editor' key-bindings 'vi'
 
 # Set the Pacman frontend.
 # zstyle ':prezto:module:pacman' frontend 'yaourt'
-
-#
-# Prompt
-#
-
-# Set the prompt theme to load.
-# Setting it to 'random' loads a random theme.
-# Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'sorin'
 
 #
 # Screen
